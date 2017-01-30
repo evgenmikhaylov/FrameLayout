@@ -10,7 +10,7 @@ s.source                = { :git => 'https://github.com/medvedzzz/FrameLayout.gi
 s.requires_arc          = 'true'
 s.source_files          = 'FrameLayout/*.swift'
 s.subspec 'Extensions' do |ss|
-	ss.source_files     = 'FrameLayout/Extensions/*.{h,m}'
+	ss.source_files     = 'FrameLayout/Extensions/*.swift'
 end
 s.ios.deployment_target = '8.0'
 s.osx.deployment_target = "10.10"
