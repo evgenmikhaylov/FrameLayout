@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name                  = 'FrameLayout'
-s.version               = '0.0.1'
+s.version               = '0.0.3'
 s.summary               = 'Frame layout for UIView, CALayer written in Swift'
 s.homepage              = 'https://github.com/medvedzzz/FrameLayout'
 s.license               = 'MIT'
@@ -10,6 +10,7 @@ s.source                = { :git => 'https://github.com/medvedzzz/FrameLayout.gi
 s.requires_arc          = 'true'
 s.source_files          = 'FrameLayout/*.swift'
 s.ios.deployment_target = '8.0'
+s.osx.deployment_target = "10.10"
 s.pod_target_xcconfig   = {
     'SWIFT_VERSION' => '3.0',
   }
