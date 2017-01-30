@@ -6,9 +6,15 @@
 //  Copyright © 2016 Evgeny Mikhaylov. All rights reserved.
 //
 
-import UIKit
+#if os(iOS) || os(tvOS)
+    import UIKit
+    public typealias FrameLayoutViewController = UIViewController
+#elseif os(OSX)
+    import AppKit
+    public typealias FrameLayoutViewController = NSViewController
+#endif
 
-extension UIViewController {
+extension FrameLayoutViewController {
     var frameLayout: FrameLayout {
         return self.view.frameLayout
     }

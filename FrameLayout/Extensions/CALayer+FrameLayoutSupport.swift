@@ -6,18 +6,16 @@
 //  Copyright © 2016 Evgeny Mikhaylov. All rights reserved.
 //
 
-import UIKit
+import QuartzCore
 
 extension CALayer: FrameLayoutSupport {
-    var center: CGPoint {
-        set {
-            position = newValue
-        }
-        get {
-            return position
-        }
-    }
-    var superObject: FrameLayoutSupport? {
+    var parent: FrameLayoutSupport? {
         return superlayer
+    }
+    var childs: [FrameLayoutSupport] {
+        guard let sublayers = sublayers else {
+            return []
+        }
+        return sublayers
     }
 }

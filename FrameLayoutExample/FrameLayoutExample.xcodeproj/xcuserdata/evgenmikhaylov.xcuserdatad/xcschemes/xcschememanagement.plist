@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>FrameLayoutExampleMacOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0E4776701E3F279100EC94E2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>0E61E5E61E0128B5005A00A3</key>
 		<dict>
 			<key>primary</key>

@@ -10,19 +10,19 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var redView: UIView = UIView()
-    var blueView: UIView = UIView()
+    var redView = UIView()
+    var blueView = UIView()
     
-    var redLayer: CALayer = CALayer()
-    var blueLayer: CALayer = CALayer()
+    var redLayer = CALayer()
+    var blueLayer = CALayer()
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        redView.backgroundColor = UIColor.red
+        redView.backgroundColor = .red
         view.addSubview(redView)
         
-        blueView.backgroundColor = UIColor.blue
+        blueView.backgroundColor = .blue
         view.addSubview(blueView)
         
         redLayer.backgroundColor = UIColor.red.cgColor
@@ -42,8 +42,8 @@ class ViewController: UIViewController {
         redView.frameLayout.apply{ layout in
             layout.leftMargin = 20.0
             layout.rightMargin = 20.0
+            layout.height = layout.width / 2.0
             layout.top = self.topLayoutGuide.length + 20.0
-            layout.height = 50.0
         }
         blueView.frameLayout.apply{ layout in
             layout.centerHorizontally()

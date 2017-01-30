@@ -5,18 +5,17 @@
 //  Copyright © 2016 Evgeny Mikhaylov. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 
 class FrameLayout {
-    init(layoutedObject: FrameLayoutSupport?) {
+    init(layoutedObject: FrameLayoutSupport) {
         _applying = false
-        self.layoutingObject = layoutedObject
+        self.layoutedObject = layoutedObject
     }
 
     private init(frameLayout: FrameLayout) {
-        layoutingObject = frameLayout.layoutingObject
-        _applying = false
-        
+        layoutedObject = frameLayout.layoutedObject
+        _applying = frameLayout._applying
         _left = frameLayout._left
         _right = frameLayout._right
         _width = frameLayout._width
@@ -27,7 +26,7 @@ class FrameLayout {
         _centerY = frameLayout._centerY
     }
 
-    private(set) weak var layoutingObject: FrameLayoutSupport?
+    private(set) unowned var layoutedObject: FrameLayoutSupport
 
     // MARK: - Base
 
@@ -107,14 +106,14 @@ class FrameLayout {
     // MARK: - Center
 
     func centerHorizontally() {
-        if let superLayoutingObject = layoutingObject?.superObject {
-            centerX = superLayoutingObject.frameLayout.width / 2.0
+        if let parent = layoutedObject.parent {
+            centerX = parent.frameLayout.width / 2.0
         }
     }
     
     func centerVertically() {
-        if let superLayoutingObject = layoutingObject?.superObject {
-            centerY = superLayoutingObject.frameLayout.height / 2.0
+        if let parent = layoutedObject.parent {
+            centerY = parent.frameLayout.height / 2.0
         }
     }
     
@@ -131,14 +130,14 @@ class FrameLayout {
     }
     var rightMargin: CGFloat {
         set {
-            if let superLayoutingObject = layoutingObject?.superObject {
-                _right = superLayoutingObject.frameLayout.width - newValue
+            if let parent = layoutedObject.parent {
+                _right = parent.frameLayout.width - newValue
                 _apply()
             }
         }
         get {
-            if let superLayoutingObject = layoutingObject?.superObject {
-                return superLayoutingObject.frameLayout.width - right
+            if let parent = layoutedObject.parent {
+                return parent.frameLayout.width - right
             }
             return 0.0
         }
@@ -154,52 +153,52 @@ class FrameLayout {
     }
     var bottomMargin: CGFloat {
         set {
-            if let superLayoutingObject = layoutingObject?.superObject {
-                _bottom = superLayoutingObject.frameLayout.height - newValue
+            if let parent = layoutedObject.parent {
+                _bottom = parent.frameLayout.height - newValue
                 _apply()
             }
         }
         get {
-            if let superLayoutingObject = layoutingObject?.superObject {
-                return superLayoutingObject.frameLayout.height - bottom
+            if let parent = layoutedObject.parent {
+                return parent.frameLayout.height - bottom
             }
             return 0.0
         }
     }
-    var margins: UIEdgeInsets {
-        set {
-            _left = newValue.left
-            _top = newValue.top
-            if let superLayoutingObject = layoutingObject?.superObject {
-                _right = superLayoutingObject.frameLayout.width - newValue.right
-                _bottom = superLayoutingObject.frameLayout.height - newValue.bottom
-            }
-            _apply()
-        }
-        get {
-            if let superLayoutingObject = layoutingObject?.superObject {
-                return UIEdgeInsets(
-                    top: _originY,
-                    left: _originX,
-                    bottom: superLayoutingObject.frameLayout.height - bottom,
-                    right: superLayoutingObject.frameLayout.width - right
-                )
-            }
-            return UIEdgeInsets.zero
-        }
-    }
+//    var margins: UIEdgeInsets {
+//        set {
+//            _left = newValue.left
+//            _top = newValue.top
+//            if let superLayoutingObject = layoutedObject?.superObject {
+//                _right = superLayoutingObject.frameLayout.width - newValue.right
+//                _bottom = superLayoutingObject.frameLayout.height - newValue.bottom
+//            }
+//            _apply()
+//        }
+//        get {
+//            if let superLayoutingObject = layoutedObject?.superObject {
+//                return UIEdgeInsets(
+//                    top: _originY,
+//                    left: _originX,
+//                    bottom: superLayoutingObject.frameLayout.height - bottom,
+//                    right: superLayoutingObject.frameLayout.width - right
+//                )
+//            }
+//            return UIEdgeInsets.zero
+//        }
+//    }
     
     func apply(block: (FrameLayout) -> Void) {
         let frameLayout = FrameLayout(frameLayout: self)
-        _applying = true
+        frameLayout._applying = true
         block(frameLayout)
-        _applying = false
-        layoutingObject?.frame = _frame
+        frameLayout._applying = false
+        frameLayout._apply()
     }
     
-    private func _apply() {
-        if !_applying {
-            layoutingObject?.frame = _frame
+    func upsideDownChilds() {
+        for child in layoutedObject.childs {
+            child.frame.origin.y = height - child.frameLayout.bottom
         }
     }
     
@@ -217,7 +216,7 @@ class FrameLayout {
     private var _centerY: CGFloat?
     
     private var _originX: CGFloat {
-        var originX: CGFloat = (layoutingObject?.frame.minX)!
+        var originX: CGFloat = 0.0
         if let left = _left {
             originX = left
         }
@@ -230,11 +229,14 @@ class FrameLayout {
         else if let centerX = _centerX, let width = _width {
             originX = centerX - width / 2.0
         }
+        else {
+            originX = layoutedObject.frame.minX
+        }
         return originX
     }
     
     private var _originY: CGFloat {
-        var originY: CGFloat = (layoutingObject?.frame.minY)!
+        var originY: CGFloat = 0.0
         if let top = _top {
             originY = top
         }
@@ -247,11 +249,14 @@ class FrameLayout {
         else if let centerY = _centerY, let height = _height {
             originY = centerY - height / 2.0
         }
+        else {
+            originY = layoutedObject.frame.minY
+        }
         return originY
     }
 
     private var _sizeWidth: CGFloat {
-        var sizeWidth: CGFloat = (layoutingObject?.frame.width)!
+        var sizeWidth: CGFloat = 0.0
         if let width = _width {
             sizeWidth = width
         }
@@ -264,11 +269,14 @@ class FrameLayout {
         else if let centerX = _centerX, let right = _right {
             sizeWidth = 2.0 * (right - centerX)
         }
+        else {
+            sizeWidth = layoutedObject.frame.width
+        }
         return sizeWidth
     }
     
     private var _sizeHeight: CGFloat {
-        var sizeHeight: CGFloat = (layoutingObject?.frame.height)!
+        var sizeHeight: CGFloat = 0.0
         if let height = _height {
             sizeHeight = height
         }
@@ -281,10 +289,19 @@ class FrameLayout {
         else if let centerY = _centerY, let bottom = _bottom {
             sizeHeight = 2.0 * (bottom - centerY)
         }
+        else {
+            sizeHeight = layoutedObject.frame.height
+        }
         return sizeHeight
     }
     
     private var _frame: CGRect {
         return CGRect(x: _originX, y: _originY, width: _sizeWidth, height: _sizeHeight)
+    }
+    
+    private func _apply() {
+        if !_applying {
+            layoutedObject.frame = _frame
+        }
     }
 }

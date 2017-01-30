@@ -6,13 +6,13 @@
 //  Copyright © 2016 Evgeny Mikhaylov. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 
 protocol FrameLayoutSupport: class {
     var frame: CGRect { get set }
-    var center: CGPoint { get set }
     var frameLayout: FrameLayout { get }
-    var superObject: FrameLayoutSupport? { get }
+    var parent: FrameLayoutSupport? { get }
+    var childs: [FrameLayoutSupport] { get }
 }
 
 extension FrameLayoutSupport {
