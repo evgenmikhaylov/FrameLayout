@@ -7,7 +7,7 @@
 
 import CoreGraphics
 
-class FrameLayout {
+public class FrameLayout {
     init(layoutedObject: FrameLayoutSupport) {
         _applying = false
         self.layoutedObject = layoutedObject

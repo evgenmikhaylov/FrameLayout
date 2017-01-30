@@ -9,10 +9,10 @@
 import QuartzCore
 
 extension CALayer: FrameLayoutSupport {
-    var parent: FrameLayoutSupport? {
+    public var parent: FrameLayoutSupport? {
         return superlayer
     }
-    var childs: [FrameLayoutSupport] {
+    public var childs: [FrameLayoutSupport] {
         guard let sublayers = sublayers else {
             return []
         }

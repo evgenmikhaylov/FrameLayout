@@ -14,7 +14,7 @@
     public typealias FrameLayoutViewController = NSViewController
 #endif
 
-extension FrameLayoutViewController {
+public extension FrameLayoutViewController {
     var frameLayout: FrameLayout {
         return self.view.frameLayout
     }

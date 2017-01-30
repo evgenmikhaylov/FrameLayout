@@ -8,14 +8,14 @@
 
 import CoreGraphics
 
-protocol FrameLayoutSupport: class {
+public protocol FrameLayoutSupport: class {
     var frame: CGRect { get set }
     var frameLayout: FrameLayout { get }
     var parent: FrameLayoutSupport? { get }
     var childs: [FrameLayoutSupport] { get }
 }
 
-extension FrameLayoutSupport {
+public extension FrameLayoutSupport {
     var frameLayout: FrameLayout {
         var frameLayoutKey = "frameLayout"
         var frameLayout = objc_getAssociatedObject(self, &frameLayoutKey) as! FrameLayout?;

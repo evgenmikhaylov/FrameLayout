@@ -15,10 +15,10 @@
 #endif
 
 extension FrameLayoutView: FrameLayoutSupport {
-    var parent: FrameLayoutSupport? {
+    public var parent: FrameLayoutSupport? {
         return superview
     }
-    var childs: [FrameLayoutSupport] {
+    public var childs: [FrameLayoutSupport] {
         return subviews
     }
 }
