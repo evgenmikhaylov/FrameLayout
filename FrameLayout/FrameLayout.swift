@@ -26,11 +26,11 @@ public class FrameLayout {
         _centerY = frameLayout._centerY
     }
 
-    private(set) unowned var layoutedObject: FrameLayoutSupport
+    public private(set) unowned var layoutedObject: FrameLayoutSupport
 
     // MARK: - Base
 
-    var left: CGFloat {
+    public var left: CGFloat {
         set {
             _left = newValue
             _apply()
@@ -39,7 +39,7 @@ public class FrameLayout {
             return _originX
         }
     }
-    var right: CGFloat {
+    public var right: CGFloat {
         set {
             _right = newValue
             _apply()
@@ -48,7 +48,7 @@ public class FrameLayout {
             return _originX + _sizeWidth
         }
     }
-    var width: CGFloat {
+    public var width: CGFloat {
         set {
             _width = newValue
             _apply()
@@ -57,7 +57,7 @@ public class FrameLayout {
             return _sizeWidth
         }
     }
-    var centerX: CGFloat {
+    public var centerX: CGFloat {
         set {
             _centerX = newValue
             _apply()
@@ -66,7 +66,7 @@ public class FrameLayout {
             return _originX + _sizeWidth / 2.0
         }
     }
-    var top: CGFloat {
+    public var top: CGFloat {
         set {
             _top = newValue
             _apply()
@@ -75,7 +75,7 @@ public class FrameLayout {
             return _originY
         }
     }
-    var bottom: CGFloat {
+    public var bottom: CGFloat {
         set {
             _bottom = newValue
             _apply()
@@ -84,7 +84,7 @@ public class FrameLayout {
             return _originY + _sizeHeight
         }
     }
-    var height: CGFloat {
+    public var height: CGFloat {
         set {
             _height = newValue
             _apply()
@@ -93,7 +93,7 @@ public class FrameLayout {
             return _sizeHeight
         }
     }
-    var centerY: CGFloat {
+    public var centerY: CGFloat {
         set {
             _centerY = newValue
             _apply()
@@ -105,13 +105,13 @@ public class FrameLayout {
 
     // MARK: - Center
 
-    func centerHorizontally() {
+    public func centerHorizontally() {
         if let parent = layoutedObject.parent {
             centerX = parent.frameLayout.width / 2.0
         }
     }
     
-    func centerVertically() {
+    public func centerVertically() {
         if let parent = layoutedObject.parent {
             centerY = parent.frameLayout.height / 2.0
         }
@@ -119,7 +119,7 @@ public class FrameLayout {
     
     // MARK: - Margins
     
-    var leftMargin: CGFloat {
+    public var leftMargin: CGFloat {
         set {
             _left = newValue
             _apply()
@@ -128,7 +128,7 @@ public class FrameLayout {
             return _originX
         }
     }
-    var rightMargin: CGFloat {
+    public var rightMargin: CGFloat {
         set {
             if let parent = layoutedObject.parent {
                 _right = parent.frameLayout.width - newValue
@@ -142,7 +142,7 @@ public class FrameLayout {
             return 0.0
         }
     }
-    var topMargin: CGFloat {
+    public var topMargin: CGFloat {
         set {
             _top = newValue
             _apply()
@@ -151,7 +151,7 @@ public class FrameLayout {
             return _originY
         }
     }
-    var bottomMargin: CGFloat {
+    public var bottomMargin: CGFloat {
         set {
             if let parent = layoutedObject.parent {
                 _bottom = parent.frameLayout.height - newValue
@@ -188,7 +188,7 @@ public class FrameLayout {
 //        }
 //    }
     
-    func apply(block: (FrameLayout) -> Void) {
+    public func apply(block: (FrameLayout) -> Void) {
         let frameLayout = FrameLayout(frameLayout: self)
         frameLayout._applying = true
         block(frameLayout)
@@ -196,7 +196,7 @@ public class FrameLayout {
         frameLayout._apply()
     }
     
-    func upsideDownChilds() {
+    public func upsideDownChilds() {
         for child in layoutedObject.childs {
             child.frame.origin.y = height - child.frameLayout.bottom
         }
