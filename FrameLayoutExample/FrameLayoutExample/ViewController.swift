@@ -39,31 +39,30 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        redView.frameLayout.apply{ layout in
+        redView.frameLayout.performUpdates { layout in
             layout.leftMargin = 20.0
             layout.rightMargin = 20.0
             layout.height = layout.width / 2.0
-            layout.top = self.topLayoutGuide.length + 20.0
+            layout.top = topLayoutGuide.length + 20.0
         }
-        blueView.frameLayout.apply{ layout in
+        blueView.frameLayout.performUpdates { layout in
             layout.centerHorizontally()
             layout.width = 200.0
             layout.top = redView.frameLayout.bottom + 20.0
             layout.height = 50.0
         }
-        redLayer.frameLayout.apply{ layout in
+        redLayer.frameLayout.performUpdates { layout in
             layout.left = 20.0
-            layout.right = self.frameLayout.width - 20.0
+            layout.right = frameLayout.width - 20.0
             layout.top = blueView.frameLayout.bottom + 50.0
             layout.height = 50.0
         }
-        blueLayer.frameLayout.apply{ layout in
+        blueLayer.frameLayout.performUpdates { layout in
             layout.centerHorizontally()
             layout.width = 200.0
             layout.top = redLayer.frameLayout.bottom + 20.0
             layout.height = 50.0
         }
     }
-
 }
 

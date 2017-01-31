@@ -21,6 +21,8 @@
 		0E47768E1E3F299D00EC94E2 /* FrameLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4776851E3F299D00EC94E2 /* FrameLayout.swift */; };
 		0E47768F1E3F299D00EC94E2 /* FrameLayoutSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4776861E3F299D00EC94E2 /* FrameLayoutSupport.swift */; };
 		0E4776901E3F299D00EC94E2 /* FrameLayoutSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4776861E3F299D00EC94E2 /* FrameLayoutSupport.swift */; };
+		0E4776941E3F9E0500EC94E2 /* NSObject+Runtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4776931E3F9E0500EC94E2 /* NSObject+Runtime.swift */; };
+		0E4776951E3FA12900EC94E2 /* NSObject+Runtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4776931E3F9E0500EC94E2 /* NSObject+Runtime.swift */; };
 		0E61E5EB1E0128B5005A00A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E61E5EA1E0128B5005A00A3 /* AppDelegate.swift */; };
 		0E61E5ED1E0128B5005A00A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E61E5EC1E0128B5005A00A3 /* ViewController.swift */; };
 		0E61E5F21E0128B5005A00A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E61E5F11E0128B5005A00A3 /* Assets.xcassets */; };
@@ -39,6 +41,7 @@
 		0E4776841E3F299D00EC94E2 /* View+FrameLayoutSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+FrameLayoutSupport.swift"; sourceTree = "<group>"; };
 		0E4776851E3F299D00EC94E2 /* FrameLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameLayout.swift; sourceTree = "<group>"; };
 		0E4776861E3F299D00EC94E2 /* FrameLayoutSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameLayoutSupport.swift; sourceTree = "<group>"; };
+		0E4776931E3F9E0500EC94E2 /* NSObject+Runtime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Runtime.swift"; sourceTree = "<group>"; };
 		0E61E5E71E0128B5005A00A3 /* FrameLayoutExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FrameLayoutExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E61E5EA1E0128B5005A00A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E61E5EC1E0128B5005A00A3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +97,7 @@
 				0E4776821E3F299D00EC94E2 /* CALayer+FrameLayoutSupport.swift */,
 				0E4776831E3F299D00EC94E2 /* ViewController+FrameLayout.swift */,
 				0E4776841E3F299D00EC94E2 /* View+FrameLayoutSupport.swift */,
+				0E4776931E3F9E0500EC94E2 /* NSObject+Runtime.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -231,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E4776951E3FA12900EC94E2 /* NSObject+Runtime.swift in Sources */,
 				0E4776881E3F299D00EC94E2 /* CALayer+FrameLayoutSupport.swift in Sources */,
 				0E4776761E3F279100EC94E2 /* ViewController.swift in Sources */,
 				0E47768A1E3F299D00EC94E2 /* ViewController+FrameLayout.swift in Sources */,
@@ -247,6 +252,7 @@
 			files = (
 				0E4776871E3F299D00EC94E2 /* CALayer+FrameLayoutSupport.swift in Sources */,
 				0E61E5ED1E0128B5005A00A3 /* ViewController.swift in Sources */,
+				0E4776941E3F9E0500EC94E2 /* NSObject+Runtime.swift in Sources */,
 				0E4776891E3F299D00EC94E2 /* ViewController+FrameLayout.swift in Sources */,
 				0E47768F1E3F299D00EC94E2 /* FrameLayoutSupport.swift in Sources */,
 				0E47768D1E3F299D00EC94E2 /* FrameLayout.swift in Sources */,
@@ -438,6 +444,7 @@
 				0E47767F1E3F279100EC94E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0E61E5E21E0128B5005A00A3 /* Build configuration list for PBXProject "FrameLayoutExample" */ = {
 			isa = XCConfigurationList;

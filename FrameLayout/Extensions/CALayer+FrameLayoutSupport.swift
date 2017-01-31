@@ -9,9 +9,28 @@
 import QuartzCore
 
 extension CALayer: FrameLayoutSupport {
+    
+#if os(OSX)
+    override open class func initialize() {
+        if self != CALayer.self {
+            return
+        }
+        let swizzlingClosure: () = {
+            CALayer.swizzle(#selector(layoutSublayers), with: #selector(fl_layoutChilds))
+        }()
+        swizzlingClosure
+    }
+
+    @objc private func fl_layoutChilds() {
+        fl_layoutChilds()
+        frameLayout.didLayoutChilds()
+    }
+#endif
+    
     public var parent: FrameLayoutSupport? {
         return superlayer
     }
+    
     public var childs: [FrameLayoutSupport] {
         guard let sublayers = sublayers else {
             return []
